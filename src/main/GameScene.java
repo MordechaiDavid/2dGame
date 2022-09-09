@@ -10,10 +10,16 @@ public class GameScene extends JPanel {
     public int originalTileSize = 16;
     public int scale = 3;
     public int tileSize = originalTileSize * scale;
-    public int maxCol = 16;
-    public int maxRow = 12;
-    public int screenWidth = tileSize * maxCol;
-    public int screenHeight = tileSize * maxRow;
+    public int maxScreenCol = 16;
+    public int maxScreenRow = 12;
+    public int screenWidth = tileSize * maxScreenCol;
+    public int screenHeight = tileSize * maxScreenRow;
+    // world settings
+    public int maxWorldCol = 50;
+    public int maxWorldRow = 50;
+    public int worldWidth = tileSize * maxWorldCol;
+    public int worldHeight = tileSize * maxWorldRow;
+
     public GameEngine engine;
     public int FPS = 60;
     public KeyHandler keyHandler = new KeyHandler();

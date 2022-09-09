@@ -1,30 +1,30 @@
 package entity;
 
-import entity.Entity;
 import main.GameScene;
 import main.KeyHandler;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class Player extends Entity {
     public GameScene gameScene;
     public KeyHandler keyHandler;
+    public final int screenX;
+    public final int screenY;
 
     public Player(GameScene gameScene, KeyHandler keyHandler) {
         this.gameScene = gameScene;
         this.keyHandler = keyHandler;
+
+        screenX = gameScene.screenWidth/2 - (gameScene.tileSize/2);
+        screenY = gameScene.screenHeight/2 - (gameScene.tileSize/2);
         getImages();
         setDefaultValues();
     }
 
     public void setDefaultValues() {
-        this.x = 100;
-        this.y = 100;
+        this.worldX = gameScene.tileSize * 23;
+        this.worldY = gameScene.tileSize * 21;
         this.speed = 4;
         direction = "down";
         spriteCounter = 0;
@@ -47,16 +47,16 @@ public class Player extends Entity {
             if (keyHandler.isRight || keyHandler.isLeft || keyHandler.isDown || keyHandler.isUp) {
                 if (keyHandler.isRight) {
                     direction = "right";
-                    x += speed;
+                    worldX += speed;
                 } else if (keyHandler.isLeft) {
                     direction = "left";
-                    x -= speed;
+                    worldX -= speed;
                 } else if (keyHandler.isUp) {
                     direction = "up";
-                    y -= speed;
+                    worldY -= speed;
                 } else if (keyHandler.isDown) {
                     direction = "down";
-                    y += speed;
+                    worldY += speed;
                 }
 
                 spriteCounter++;
@@ -105,7 +105,7 @@ public class Player extends Entity {
 
             }
 
-            graphics2D.drawImage(image, this.x, this.y, gameScene.tileSize, gameScene.tileSize, null);
+            graphics2D.drawImage(image, screenX, screenY, gameScene.tileSize, gameScene.tileSize, null);
         }
 
 }
